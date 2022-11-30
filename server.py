@@ -1,4 +1,5 @@
 import socket
+import time
 
 class Server():
 
@@ -10,46 +11,44 @@ class Server():
     def host(self, host, port):
         self.server.bind((host, port))
         self.server.setblocking(0)
-        self.server.listen(1)
-
-        # Accepting player's connections
-        self._host_get_client()
-        
-        # Getting data sent from players
-        self._host_get_data()
-        
-        # Sending data to players
-        self._host_send_data("fuck u")
+        self.server.listen(32)
             
     def connect(self, host, port):
-        self.server.connect((host, port))
-        
-        
+        self.server.connect((host, port))            
 
-    def _host_get_client(self):
+    def host_get_client(self):
         try:
             client, addr = self.server.accept()
-            print(f'Connected {addr}')
             client.setblocking(0)
             self.players.append(client)
+            return f'Connected {addr}'
         except Exception:
-            print("Nobody")
+            return 'Nobody'
 
-    def _host_get_data(self):
+    def host_get_data(self):
         try:
             for sock in self.players:
-                data = sock.recv(1024).decode()
-                print(f'Got {data}')
+                return sock.recv(1024).decode()
         except Exception:
-            pass
+            return 'Non data'
     
-    def _host_send_data(self, data):
+    def host_send_data(self, data):
         try:
             for sock in self.players:
-                sock.send('Data'.encode())
-                print(f'Sent data')
+                sock.send(data.encode())
         except Exception:
             self.players.remove(sock)
             sock.close()
 
+    def connect_get_data(self):
+        try:
+            return self.server.recv(1024).decode()
+        except Exception:
+            return ''
+
+    def connect_send_data(self, data):
+        try:
+            self.server.send(data.encode())
+        except Exception:
+            pass
     

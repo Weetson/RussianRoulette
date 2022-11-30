@@ -2,13 +2,20 @@ import pygame
 import config
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, x, filename):
+    def __init__(self, cords, filename):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(filename).convert_alpha()
-        self.rect = self.image.get_rect(center=(x, 0))
+        self.rect = self.image.get_rect(center=cords)
 
-    def update(self):
-        if self.rect.y < config.SCREEN_SHAPE['HEIGHT']:
+    def update(self, side):
+        if side == 'right':
+            self.rect.x += config.PLAYER_SPEED
+        elif side == 'left':
+            self.rect.x += -config.PLAYER_SPEED
+        elif side == 'up':
+            self.rect.y += -config.PLAYER_SPEED
+        elif side == 'down':
             self.rect.y += config.PLAYER_SPEED
-        else:
-            self.rect.y = 0
+
+        if self.rect.x == config.SCREEN_SHAPE['WIDTH']:
+            self.rect.x = 0

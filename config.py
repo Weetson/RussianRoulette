@@ -3,7 +3,7 @@ SCREEN_SHAPE = {
     'HEIGHT' : 500
 }
 
-PLAYER_SPEED = 1
+PLAYER_SPEED = 10
 
 COLORS = {
     'BLACK' : (0, 0, 0),
