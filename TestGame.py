@@ -20,7 +20,7 @@ def player_cords(x, y):
     """ Counting players positions """
     return (x + math.sin((step * i) * (math.pi / (config.CIRCLE / 2))) * config.PADDING, y - math.cos((step * i) * (math.pi / (config.CIRCLE / 2))) * config.PADDING)
 
-angle = 100
+angle = 0
 running = True
 while running:
 
@@ -34,10 +34,12 @@ while running:
                 players[3].killed('img/icon-dead.png')
             if event.key == pygame.K_RIGHT:
                 players.remove(players[-1])
+            if event.key == pygame.K_SPACE:
+                valera.random_person(len(players), step)
 
-    keys = pygame.key.get_pressed()
+    '''keys = pygame.key.get_pressed()
     if keys[pygame.K_SPACE]:
-        valera.rotation(-5)
+        valera.random_person(len(players), step)'''
 
     screen.fill(config.COLORS['WHITE'])
 
