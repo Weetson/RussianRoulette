@@ -11,7 +11,7 @@ class Server():
     def host(self, host, port):
         self.server.bind((host, port))
         self.server.setblocking(0)
-        self.server.listen(32)
+        self.server.listen(6)
             
     def connect(self, host, port):
         self.server.connect((host, port))            

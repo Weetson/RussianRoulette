@@ -3,24 +3,24 @@ import Player
 import Server
 import config
 import math
-import Valera
 
 import pretty_errors
 
 screen = pygame.display.set_mode((config.SCREEN_SHAPE['WIDTH'], config.SCREEN_SHAPE['HEIGHT']))
 
+
+
 pygame.display.set_caption('Test')
 screen.fill(config.COLORS['WHITE'])
 pygame.display.flip()
 
-valera = Valera.Valera(cords = config.SCREEN_CENTER, filename = 'img/Valera.png')
 players = []
 
 def player_cords(x, y):
     """ Counting players positions """
     return (x + math.sin((step * i) * (math.pi / (config.CIRCLE / 2))) * config.PADDING, y - math.cos((step * i) * (math.pi / (config.CIRCLE / 2))) * config.PADDING)
 
-angle = 100
+
 running = True
 while running:
 
@@ -35,10 +35,6 @@ while running:
             if event.key == pygame.K_RIGHT:
                 players.remove(players[-1])
 
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_SPACE]:
-        valera.rotation(-5)
-
     screen.fill(config.COLORS['WHITE'])
 
     if len(players) == 0:
@@ -49,6 +45,5 @@ while running:
             screen.blit(players[i].image, player_cords(players[i].rect.x, players[i].rect.y))
 
     
-    screen.blit(valera.image, valera.rect)
     pygame.display.update()
     pygame.time.delay(20)

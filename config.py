@@ -11,3 +11,7 @@ COLORS = {
     'BLACK' : (0, 0, 0),
     'WHITE' : (255, 255, 255)
 }
+
+CIRCLE = 360
+
+PADDING = 200
