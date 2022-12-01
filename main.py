@@ -13,7 +13,7 @@ pygame.display.flip()
 
 server = Server.Server()
 server.connect(host = 'localhost', port = 8080)
-player = Player.Player(cords = (config.SCREEN_SHAPE['WIDTH'] // 2, config.SCREEN_SHAPE['HEIGHT'] // 2), filename = 'Valera.png')
+player = Player.Player(cords = (config.SCREEN_SHAPE['WIDTH'] // 2, config.SCREEN_SHAPE['HEIGHT'] // 2), filename = 'img/Valera.png')
 
 running = True
 while running:
