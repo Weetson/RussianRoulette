@@ -18,7 +18,7 @@ pygame.display.flip()
 
 valera = Valera.Valera(cords = config.SCREEN_CENTER, filename = 'img/Valera.png')
 players = []
-names = ['Vasya', 'Sveta', 'Lyaha', 'Vadim', 'Dimon', 'David']
+names = ['Vasya', 'Sveta', 'Lyaha', 'Vadim', 'Dimon', 'David', 'Artem', 'Evgeniy', 'Vit', 'Eren', 'Armin', 'Levi', 'Zhak', 'Mikasa', 'Anny', 'Handi', 'Billy', 'Marko', 'Sasha', 'Zik', 'Van', 'Floch']
 f1 = pygame.font.Font('fonts/times-new-roman.ttf', 36)
 
 def player_cords(x, y):
@@ -34,31 +34,36 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+
+            if event.key == pygame.K_LEFT: # Adding player 
                 player_name = random.choice(names)
                 name = f1.render(player_name, 1, (0, 0, 0))
                 players.append(Player.Player(cords = config.SCREEN_CENTER, filename = 'img/icon.png', player_name_text = name, player_name = player_name))
-            if event.key == pygame.K_r:
-                valera.rotation(-step)
+
+            if event.key == pygame.K_r: # Rotating valera
+                valera.rotation(-step * (people_counter + 1))
                 people_counter += 1
                 if people_counter > len(players) - 1:
                     people_counter = 0
-            if event.key == pygame.K_s:
+
+            if event.key == pygame.K_s: # Shooting player
                 if people_counter == valera.bullet:
                     print(f'killed - {players[people_counter].player_name}')
                     players.remove(players[people_counter])
                     valera.bullet = random.randint(0, len(players))
-                    people_counter = 0
+                    if people_counter > len(players) - 1:
+                        people_counter = 0
                 else:
                     print(f'not killed - {players[people_counter].player_name}')
                 
                 print(f'valera - {valera.bullet}, counter - {people_counter}')
 
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_RIGHT: # Removing player
                 players.remove(players[-1])
-            if event.key == pygame.K_SPACE:
+
+            if event.key == pygame.K_SPACE: # Random person in game start
                 valera.random_person(len(players), step)
-                valera.bullet = random.randint(0, len(players))
+                valera.bullet = random.randint(0, len(players) - 1)
 
     '''keys = pygame.key.get_pressed()
     if keys[pygame.K_SPACE]:
