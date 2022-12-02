@@ -9,14 +9,14 @@ class Valera(pygame.sprite.Sprite):
         self.image = pygame.image.load(filename).convert_alpha()
         self.image_clean = self.image.copy()
         self.rect = self.image.get_rect(center=cords)
+        self.bullet = None
 
     def random_person(self, players_amount, step):
-        self.person = random.randint(0, players_amount)
+        self.person = random.randint(0, players_amount - 1)
         print(self.person)
-        for i in range(360):
-            self.rotation(1)
         self.rotation(self.person * step)
 
     def rotation(self, angle):
         self.image = pygame.transform.rotate(self.image_clean, angle)
         self.rect = self.image.get_rect(center=config.SCREEN_CENTER)
+        print('rotated')

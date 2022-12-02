@@ -1,6 +1,6 @@
 SCREEN_SHAPE = {
-    'WIDTH' : 500,
-    'HEIGHT' : 500
+    'WIDTH' : 700,
+    'HEIGHT' : 700
 }
 
 SCREEN_CENTER = (SCREEN_SHAPE['WIDTH'] // 2, SCREEN_SHAPE['WIDTH'] // 2)
