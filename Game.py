@@ -53,9 +53,8 @@ while running:
         
         server.host_send_data(players)
 
-    else:
+    elif not is_host:
         players = server.connect_get_data()
-        print(players)
 
     if len(players) == 0:
         pass

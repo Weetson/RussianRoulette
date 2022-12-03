@@ -1,5 +1,5 @@
 import socket
-import time
+import pickle
 
 class Server():
 
@@ -11,7 +11,7 @@ class Server():
     def host(self, host, port):
         self.server.bind((host, port))
         self.server.setblocking(0)
-        self.server.listen(6)
+        self.server.listen(32)
             
     def connect(self, host, port):
         self.server.connect((host, port))            
@@ -28,21 +28,24 @@ class Server():
     def host_get_data(self):
         try:
             for sock in self.players:
-                return sock.recv(1024).decode()
+                return sock.recv(1024).decode() 
         except Exception:
-            return 'Non data'
+            return ''
     
     def host_send_data(self, data):
-        try:
-            for sock in self.players:
-                sock.send(data.encode())
-        except Exception:
-            self.players.remove(sock)
-            sock.close()
+
+        for sock in self.players:
+            try:
+                sock.send(data)
+            except Exception:
+                self.players.remove(sock)
+                sock.close()
 
     def connect_get_data(self):
         try:
-            return self.server.recv(1024).decode()
+            data = self.server.recv(1024)
+            return pickle.load(data) 
+                
         except Exception:
             return None
 

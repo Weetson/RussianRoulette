@@ -1,4 +1,4 @@
 host = "localhost"
 port = 8080
-name = "PC"
+name = "vs"
 style = "connect"
