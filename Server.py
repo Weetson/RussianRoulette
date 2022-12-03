@@ -21,9 +21,9 @@ class Server():
             client, addr = self.server.accept()
             client.setblocking(0)
             self.players.append(client)
-            return f'Connected {addr}'
+            return True
         except Exception:
-            return 'Nobody'
+            return False
 
     def host_get_data(self):
         try:
@@ -44,7 +44,7 @@ class Server():
         try:
             return self.server.recv(1024).decode()
         except Exception:
-            return ''
+            return None
 
     def connect_send_data(self, data):
         try:

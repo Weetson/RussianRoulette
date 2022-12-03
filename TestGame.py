@@ -43,7 +43,7 @@ while running:
             if event.key == pygame.K_r: # Rotating valera
                 valera.rotation(-step * (people_counter + 1))
                 people_counter += 1
-                if people_counter > len(players) - 1:
+                if people_counter > len(players):
                     people_counter = 0
 
             if event.key == pygame.K_s: # Shooting player
@@ -51,7 +51,7 @@ while running:
                     print(f'killed - {players[people_counter].player_name}')
                     players.remove(players[people_counter])
                     valera.bullet = random.randint(0, len(players))
-                    if people_counter > len(players) - 1:
+                    if people_counter > len(players):
                         people_counter = 0
                 else:
                     print(f'not killed - {players[people_counter].player_name}')
