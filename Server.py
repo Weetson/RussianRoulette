@@ -36,15 +36,15 @@ class Server():
 
         for sock in self.players:
             try:
-                sock.send(data)
+                sock.send(data.encode())
             except Exception:
                 self.players.remove(sock)
                 sock.close()
 
     def connect_get_data(self):
         try:
-            data = self.server.recv(1024)
-            return pickle.load(data) 
+            data = self.server.recv(1024).decode()
+            return data
                 
         except Exception:
             return None

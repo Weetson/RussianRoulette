@@ -1,4 +1,4 @@
-host = "localhost"
+host = "26.255.65.151"
 port = 8080
-name = "vs"
-style = "connect"
+name = "Davvood"
+style = "host"

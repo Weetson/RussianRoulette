@@ -50,12 +50,18 @@ while running:
             player_name = server.host_get_data()
             name = font.render(player_name, 1, (0, 0, 0))
             players.append(Player.Player(cords = config.SCREEN_CENTER, filename = 'img/icon.png', player_name_text = name, player_name = player_name))
-        
-        server.host_send_data(players)
+            
+            for player in players:
+                server.host_send_data(player.player_name)
 
     elif not is_host:
-        players = server.connect_get_data()
+        player_name = server.connect_get_data()
+        
+        if player_name != None:
+            name = font.render(player_name, 1, (0, 0, 0))
+            players.append(Player.Player(cords = config.SCREEN_CENTER, filename = 'img/icon.png', player_name_text = name, player_name = player_name))
 
+    """ Players perfomance """
     if len(players) == 0:
         pass
     else:
